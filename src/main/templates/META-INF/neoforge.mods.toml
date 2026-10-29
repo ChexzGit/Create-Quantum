@@ -61,6 +61,13 @@ A Create mod add-on specifically made for the Steam SMP, with requests form her 
 [[dependencies.createquantum]]
 modId = "create"
 type = "required"
-versionRange = "[21.1.0,)"
+#versionRange = "[21.1.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.createquantum]]
+modId = "create_new_age"
+type = "required"
+#versionRange = "[21.1.0,)"
 ordering = "AFTER"
 side = "BOTH"
