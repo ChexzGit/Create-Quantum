@@ -3,6 +3,8 @@ package net.chexz.create_quantum;
 import net.chexz.create_quantum.item.ModItems;
 import net.chexz.create_quantum.keymapping.ModKeymappings;
 import net.chexz.create_quantum.networking.packet.MainAbilityKeyC2S;
+import net.chexz.create_quantum.networking.packet.PowerAbilityKeyC2S;
+import net.chexz.create_quantum.networking.packet.UtilAbilityKeyC2S;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.network.chat.Component;
@@ -59,6 +61,24 @@ public class CreateQuantumClient {
                 }
             });
             PacketDistributor.sendToServer(new MainAbilityKeyC2S(item));
+        }
+        if(ModKeymappings.PRESS_ABILITYUTIL.get().consumeClick()){
+            ItemStack item = new ItemStack(new ItemLike() {
+                @Override
+                public Item asItem() {
+                    return ModItems.HEAVYBOLT.get();
+                }
+            });
+            PacketDistributor.sendToServer(new UtilAbilityKeyC2S(item));
+        }
+        if(ModKeymappings.PRESS_ABILITYPOWER.get().consumeClick()){
+            ItemStack item = new ItemStack(new ItemLike() {
+                @Override
+                public Item asItem() {
+                    return ModItems.SACREDSHOT.get();
+                }
+            });
+            PacketDistributor.sendToServer(new PowerAbilityKeyC2S(item));
         }
     }
 }
