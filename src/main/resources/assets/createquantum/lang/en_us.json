@@ -1,4 +1,8 @@
 {
   "item.createquantum.quantummodule": "Quantum Module",
-  "item.createquantum.incompletequantummodule": "Incomplete Quantum Module"
+  "item.createquantum.incompletequantummodule": "Incomplete Quantum Module",
+  "item.createquantum.heartblow": "Heartblow",
+  "item.createquantum.heavybolt": "Heavybolt",
+  "item.createquantum.sacredshot": "Sacredshot",
+  "key.create_quantum.main": "Main Ability"
 }

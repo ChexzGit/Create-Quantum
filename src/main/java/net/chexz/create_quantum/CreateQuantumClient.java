@@ -1,14 +1,27 @@
 package net.chexz.create_quantum;
 
+import net.chexz.create_quantum.item.ModItems;
+import net.chexz.create_quantum.keymapping.ModKeymappings;
+import net.chexz.create_quantum.networking.packet.MainAbilityKeyC2S;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientPacketListener;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.AirItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 // This class will not load on dedicated servers. Accessing client side code from here is safe.
 @Mod(value = CreateQuantum.MOD_ID, dist = Dist.CLIENT)
@@ -20,6 +33,8 @@ public class CreateQuantumClient {
         // The config screen is accessed by going to the Mods screen > clicking on your mod > clicking on config.
         // Do not forget to add translations for your config options to the en_us.json file.
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+
+        ModKeymappings.register();
     }
 
     @SubscribeEvent
@@ -27,5 +42,23 @@ public class CreateQuantumClient {
         // Some client setup code
         CreateQuantum.LOGGER.info("HELLO FROM CLIENT SETUP");
         CreateQuantum.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+    }
+
+    @SubscribeEvent
+    public static void registerKeyMappings(RegisterKeyMappingsEvent event){
+        event.register(ModKeymappings.PRESS_ABILITYMAIN.get());
+    }
+
+    @SubscribeEvent
+    public static void onClientTick(ClientTickEvent.Post event){
+        if(ModKeymappings.PRESS_ABILITYMAIN.get().consumeClick()){
+            ItemStack item = new ItemStack(new ItemLike() {
+                @Override
+                public Item asItem() {
+                    return ModItems.HEARTBLOW.get();
+                }
+            });
+            PacketDistributor.sendToServer(new MainAbilityKeyC2S(item));
+        }
     }
 }

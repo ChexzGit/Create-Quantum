@@ -71,3 +71,10 @@ type = "required"
 #versionRange = "[21.1.0,)"
 ordering = "AFTER"
 side = "BOTH"
+
+[[dependencies.createquantum]]
+modId = "jei"
+type = "optional"
+#versionRange = "[21.1.0,)"
+ordering = "AFTER"
+side = "BOTH"

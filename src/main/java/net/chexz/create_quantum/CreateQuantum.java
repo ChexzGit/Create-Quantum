@@ -1,9 +1,15 @@
 package net.chexz.create_quantum;
 
+import com.mojang.blaze3d.platform.InputConstants;
+import net.chexz.create_quantum.block.ModBlocks;
 import net.chexz.create_quantum.item.ModItems;
+import net.minecraft.client.KeyMapping;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import net.neoforged.neoforge.common.util.Lazy;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -33,7 +39,9 @@ public class CreateQuantum {
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
+
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -49,6 +57,9 @@ public class CreateQuantum {
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(ModItems.QUANTUMMODULE);
+            event.accept(ModItems.HEARTBLOW);
+            event.accept(ModItems.HEAVYBOLT);
+            event.accept(ModItems.SACREDSHOT);
         }
     }
 

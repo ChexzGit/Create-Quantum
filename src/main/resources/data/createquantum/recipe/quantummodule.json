@@ -1,0 +1,61 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "id": "minecraft:netherite_scrap"
+  },
+  "transitionalItem": {
+    "id": "createquantum:incompletequantummodule"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {"id": "createquantum:incompletequantummodule"},
+        {"id": "minecraft:ender_pearl"}
+      ],
+      "results": [
+        {"id": "createquantum:incompletequantummodule"}
+      ]
+    },
+    {
+      "type": "create_new_age:energizing",
+      "ingredients": [
+        {"id": "createquantum:incompletequantummodule"}
+      ],
+      "results": [
+        {"id": "createquantum:incompletequantummodule"}
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {"id": "createquantum:incompletequantummodule"},
+        {"id": "minecraft:netherite_scrap"}
+      ],
+      "results": [
+        {"id": "createquantum:incompletequantummodule"}
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {"id": "createquantum:incompletequantummodule"},
+        {"id": "create_new_age:radioactive_thorium"}
+      ],
+      "results": [
+        {"id": "createquantum:incompletequantummodule"}
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "createquantum:quantummodule",
+      "chance": 0.7
+    },
+    {
+      "id": "netherite:scrap",
+      "chance": 0.3
+    }
+  ],
+  "loops": 7
+}

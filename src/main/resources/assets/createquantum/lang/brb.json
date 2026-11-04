@@ -1,4 +1,8 @@
 {
   "item.createquantum.quantummodule": "Kwantum Aparaat",
-  "item.createquantum.incompletequantummodule": "Onvolledig Kwantum Aparaat"
+  "item.createquantum.incompletequantummodule": "Onvolledig Kwantum Aparaat",
+  "item.createquantum.heartblow": "Hértenklap",
+  "item.createquantum.heavybolt": "Zwoareschicht",
+  "item.createquantum.sacredshot": "Héiligschot",
+  "key.create_quantum.main": "Veurnààmste Vérdighéid"
 }
