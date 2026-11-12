@@ -4,5 +4,7 @@
   "item.createquantum.heartblow": "Hértenklap",
   "item.createquantum.heavybolt": "Zwoareschicht",
   "item.createquantum.sacredshot": "Héiligschot",
-  "key.create_quantum.main": "Veurnààmste Vérdighéid"
+  "key.createquantum.main": "Veurnààmste Vérdighéid",
+  "effect.createquantum.lifesteal": "Lévensdièfstàl",
+  "effect.createquantum.overcharged": "Oevergelaoie"
 }

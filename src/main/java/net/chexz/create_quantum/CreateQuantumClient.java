@@ -4,10 +4,14 @@ import net.chexz.create_quantum.item.ModItems;
 import net.chexz.create_quantum.keymapping.ModKeymappings;
 import net.chexz.create_quantum.networking.packet.MainAbilityKeyC2S;
 import net.chexz.create_quantum.networking.packet.PowerAbilityKeyC2S;
+import net.chexz.create_quantum.networking.packet.RequestCooldownS2C;
 import net.chexz.create_quantum.networking.packet.UtilAbilityKeyC2S;
+import net.chexz.create_quantum.particle.ModParticles;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
+import net.minecraft.client.particle.HeartParticle;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AirItem;
 import net.minecraft.world.item.Item;
@@ -21,6 +25,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.network.PacketDistributor;
@@ -40,10 +45,12 @@ public class CreateQuantumClient {
     }
 
     @SubscribeEvent
+    public static void registerParticleFactories(RegisterParticleProvidersEvent event){
+        event.registerSpriteSet(ModParticles.HEART_PARTICLES.get(), HeartParticle.Provider::new);
+    }
+
+    @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
-        // Some client setup code
-        CreateQuantum.LOGGER.info("HELLO FROM CLIENT SETUP");
-        CreateQuantum.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
     }
 
     @SubscribeEvent
@@ -80,5 +87,8 @@ public class CreateQuantumClient {
             });
             PacketDistributor.sendToServer(new PowerAbilityKeyC2S(item));
         }
+    }
+    public static void requestServerCooldown(Player player){
+        PacketDistributor.sendToServer(new RequestCooldownS2C(player.getMainHandItem()));
     }
 }

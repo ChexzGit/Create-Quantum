@@ -2,7 +2,10 @@ package net.chexz.create_quantum;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.chexz.create_quantum.block.ModBlocks;
+import net.chexz.create_quantum.effect.ModEffects;
 import net.chexz.create_quantum.item.ModItems;
+import net.chexz.create_quantum.networking.ModAttachments;
+import net.chexz.create_quantum.particle.ModParticles;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -42,6 +45,9 @@ public class CreateQuantum {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModEffects.register(modEventBus);
+        ModParticles.register(modEventBus);
+        ModAttachments.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

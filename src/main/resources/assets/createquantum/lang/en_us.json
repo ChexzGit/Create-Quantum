@@ -4,5 +4,7 @@
   "item.createquantum.heartblow": "Heartblow",
   "item.createquantum.heavybolt": "Heavybolt",
   "item.createquantum.sacredshot": "Sacredshot",
-  "key.create_quantum.main": "Main Ability"
+  "key.createquantum.main": "Main Ability",
+  "effect.createquantum.lifesteal": "Lifesteal",
+  "effect.createquantum.overcharged": "Overcharged"
 }
